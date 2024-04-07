@@ -1,22 +1,22 @@
+import os
 import pandas as pd
 
-LISTINGS_FILE = 'data/listings.csv'
-REVIEWS_FILE = 'data/reviews.csv'
+GUARD_NAME = 'dyfed-powys'
+GUARD_FOLDER = 'data/' + GUARD_NAME
 
-def get_dataframe_from(file):
-    return pd.read_csv(file)
+def get_dataframe():
+    dfs = []
+    for folder in os.listdir(GUARD_FOLDER):
+        if os.path.isdir(os.path.join(GUARD_FOLDER, folder)):
+            for file in os.listdir(os.path.join(GUARD_FOLDER, folder)):
+                if file.endswith('.csv') and not file.startswith('output'):
+                    dfs.append(pd.read_csv(os.path.join(GUARD_FOLDER, folder, file)))
+
+    return pd.concat(dfs, ignore_index=True)
 
 
 if __name__ == '__main__':
-    listings_df = get_dataframe_from(LISTINGS_FILE)
-    reviews_df = get_dataframe_from(REVIEWS_FILE)
-
-    df = listings_df.merge(reviews_df, left_on='id', right_on='listing_id')
-
-    print(listings_df.columns)
-    print(reviews_df.columns)
-
+    df = get_dataframe()
     print(df)
 
-    df.to_csv('output.csv')
-
+    df.to_csv(GUARD_FOLDER + '/output.csv')

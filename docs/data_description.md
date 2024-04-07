@@ -1,38 +1,19 @@
-# Descripción de los elementos del dataset
+# Descripción de los elementos del dataset _**stop-and-search**_
 
-## Listings
-
-| CLAVE                          | DESCRIPCIÓN                        |
-|--------------------------------|------------------------------------|
-| id                             | Identificador                      |
-| name                           | Nombre                             |
-| host_id                        | Identificador del anfitrión        |
-| host_name                      | Nombre del anfitrión               |
-| neighbourhood_group            | Grupo del vecindario               |
-| neighbourhood                  | Vecindario                         |
-| latitude                       | Latitud                            |
-| longitude                      | Longitud                           |
-| room_type                      | Tipo de vivienda                   |
-| price                          | Precio                             |
-| minimum_nights                 | Mínimo de noches                   |
-| number_of_reviews              | Número de reseñas                  |
-| last_review                    | Última reseña                      |
-| reviews_per_month              | Reseñas por mes                    |
-| calculated_host_listings_count | Número de reservas por mes         |
-| availability_365               | Disponibilidad en el año           |
-| number_of_reviews_ltm          | Número de reseñas en el último mes |
-| license                        | Licencia                           |
-
-## Neighbourhoods
-
-| CLAVE                | DESCRIPCIÓN          |
-|----------------------|----------------------|
-| neighbourhood_group  | Grupo del vecindario |
-| neighbourhood        | Vecindario           |
-
-## Reviews
-
-| CLAVE        | DESCRIPCIÓN   |
-|--------------|---------------|
-| listing_id   | Identificador |
-| date         | Fecha         |
+| Etiqueta                                  | Descripción                                                                                                                                                                                                               |
+|-------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Type                                      | Tipo de búsqueda, ya sea de una 'Búsqueda de persona', 'Búsqueda de vehículo' o 'Búsqueda de persona y vehículo'.                                                                                                         |
+| Date and time                             | Cuando tuvo lugar la parada y búsqueda. Tenga en cuenta que algunas fuerzas solo proporcionan fechas para sus paradas y búsquedas, por lo que puede ver un número desproporcionado de incidentes ocurriendo a medianoche. |
+| Parte de una operación policial           | Si esta parada y búsqueda fue parte de una operación policial.                                                                                                                                                            |
+| Policing operation                        | Nombre de la operación a la que pertenecía esta parada y búsqueda.                                                                                                                                                        |
+| Latitude                                  | Latitud.                                                                                                                                                                                                                  |
+| Longitude                                 | Longitud.                                                                                                                                                                                                                 |
+| Género                                    | Género legible por humanos de la persona detenida, si corresponde y se proporciona.                                                                                                                                       |
+| Rango de edad                             | Rango de edad de la persona detenida en el momento de la detención.                                                                                                                                                       |
+| Etnicidad auto-definida                   | Etnicidad auto-definida de la persona detenida.                                                                                                                                                                           |
+| Etnicidad definida por el oficial         | Etnicidad definida por el oficial de la persona detenida.                                                                                                                                                                 |
+| Legislación                               | El poder utilizado para llevar a cabo la parada y búsqueda.                                                                                                                                                               |
+| Objeto de la búsqueda                     | La razón por la que se llevó a cabo la parada y búsqueda.                                                                                                                                                                 |
+| Resultado                                 | El resultado de la parada. Falso si no se encontró nada, una cadena vacía si no se proporcionó ningún resultado.                                                                                                          |
+| Resultado vinculado al objeto de búsqueda | Si el resultado estuvo relacionado con la razón por la que se llevó a cabo la parada y búsqueda, como un valor booleano (o nulo si no se proporciona).                                                                    |
+| Remoción de más que solo ropa exterior    | Si la persona registrada tuvo más que su ropa exterior retirada, como un valor booleano (o nulo si no se proporciona).                                                                                                    |
