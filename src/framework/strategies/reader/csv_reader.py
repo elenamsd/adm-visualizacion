@@ -1,9 +1,14 @@
+from abc import abstractmethod
 from typing import List
 import pandas as pd
-from strategies.datasource_strategy import DatasourceStrategy
+from src.framework.strategies.reader.reader_strategy import ReaderStrategy
 
 
-class CSVStrategy(DatasourceStrategy):
+class CsvReader(ReaderStrategy):
+
+    @abstractmethod
+    def get_files(self, path: str) -> List[str]:
+        pass
 
     def get_dataframe(self, files: List[str]) -> pd.DataFrame:
         dfs: List[pd.DataFrame] = []
