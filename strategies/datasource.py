@@ -16,5 +16,5 @@ class Datasource:
     def strategy(self, strategy: DatasourceStrategy) -> None:
         self._strategy = strategy
 
-    def get_dataframe(self, files: List) -> pd.DataFrame:
+    def get_dataframe(self, files: List[str]) -> pd.DataFrame:
         return self._strategy.get_dataframe(files)
