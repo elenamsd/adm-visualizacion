@@ -1,5 +1,5 @@
 import pandas as pd
-from src.framework.strategies.handler.handler_strategy import HandlerStrategy
+from src.framework.handler.strategy.handler_strategy import HandlerStrategy
 
 
 class StopAndSearchHandler(HandlerStrategy):

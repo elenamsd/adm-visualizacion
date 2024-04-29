@@ -1,7 +1,7 @@
 from abc import abstractmethod
 from typing import List
 import pandas as pd
-from src.framework.strategies.reader.reader_strategy import ReaderStrategy
+from src.framework.reader.strategy.reader_strategy import ReaderStrategy
 
 
 class CsvReader(ReaderStrategy):
