@@ -1,6 +1,8 @@
 from typing import List
+
 import pandas as pd
-from src.framework.reader.strategy.reader_strategy import ReaderStrategy
+
+from src.framework.strategy.reader.reader_strategy import ReaderStrategy
 
 
 class ReaderContext:
