@@ -1,6 +1,7 @@
 import pandas as pd
-from matplotlib import pyplot as plt
 import seaborn as sns
+
+from matplotlib import pyplot as plt
 
 
 def bar_chart(dataframe: pd.DataFrame, title: str, x_label: str, y_label: str) -> None:

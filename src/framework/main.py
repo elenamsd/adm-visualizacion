@@ -1,13 +1,8 @@
-from typing import List
 import pandas as pd
-from src.framework.charts import bar_chart, line_chart, histogram, scatter_plot
-from src.framework.strategies.handler.handler_context import HandlerContext
-from src.framework.strategies.handler.impl.stop_and_search_handler import StopAndSearchHandler
-from src.framework.strategies.reader.impl.stop_and_search_csv_reader import StopAndSearchCsvReader
-from src.framework.strategies.reader.reader_context import ReaderContext
 
-GUARD_NAME = 'dyfed-powys'
-DATA_FOLDER = '../../data/'
+from src.framework.charts import bar_chart, line_chart, histogram, scatter_plot
+from src.framework.enum.datasource_type import DatasourceType
+from src.framework.factory.dataframe_factory import DataframeFactory
 
 
 def count_entries_by_gender(dataframe: pd.DataFrame, gender_label: str) -> pd.DataFrame:
@@ -23,17 +18,39 @@ def count_entries_by_gender_age_and_object_search(dataframe: pd.DataFrame) -> pd
     return dataframe.groupby(['Gender', 'Age range', 'Object of search']).size().reset_index(name='Frequency')
 
 
+def menu() -> pd.DataFrame:
+    print('¿Qué fuente de datos desea usar?')
+    print('0. Salir')
+    for idx, datasource_type in enumerate(DatasourceType.list(), start=1):
+        print(f"{idx}. {datasource_type.name}")
+
+    print('Por favor, seleccione una opción: ', end='')
+    option: str = input()
+
+    if option == '0':
+        print('Saliendo...')
+        exit()
+    else:
+        try:
+            datasource_type: DatasourceType = DatasourceType.list()[int(option) - 1]
+            print('Ha seleccionado:', datasource_type.name)
+            return DataframeFactory.create_dataframe(datasource_type)
+
+        except (ValueError, IndexError):
+            print('Opción no válida')
+            return menu()
+
+
 if __name__ == '__main__':
-    reader: ReaderContext = ReaderContext(StopAndSearchCsvReader())
-    dataset: List[str] = reader.get_files(DATA_FOLDER + GUARD_NAME)
-    dataframe: pd.DataFrame = reader.get_dataframe(dataset)
+    dataframe: pd.DataFrame = menu()
 
-    handler: HandlerContext = HandlerContext(StopAndSearchHandler())
-    dataframe_cleaned: pd.DataFrame = handler.clean_dataframe(dataframe)
+    if dataframe.empty:
+        print('No se han encontrado datos')
+        exit()
 
-    bar_chart(count_entries_by_gender(dataframe_cleaned, 'Gender'), 'Bar chart ofStops by gender', 'Gender', 'Frecuency')
-    line_chart(count_entries_by_year(dataframe_cleaned), 'Line chart of Stops by year', 'Year', 'Frecuency')
-    histogram(dataframe_cleaned['Age range'], 'Histogram of Stops by age range', 'Age range', 'Frecuency')
-    scatter_plot(dataframe_cleaned, 'ScatterPlot of Stops by gender, age range and object of search')
+    bar_chart(count_entries_by_gender(dataframe, 'Gender'), 'Bar chart of Stops by gender', 'Gender', 'Frecuency')
+    line_chart(count_entries_by_year(dataframe), 'Line chart of Stops by year', 'Year', 'Frecuency')
+    histogram(dataframe['Age range'], 'Histogram of Stops by age range', 'Age range', 'Frecuency')
+    scatter_plot(dataframe, 'ScatterPlot of Stops by gender, age range and object of search')
 
     # dataframe.to_csv(GUARD_FOLDER + '/output.csv')
