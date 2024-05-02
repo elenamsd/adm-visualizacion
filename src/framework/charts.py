@@ -1,15 +1,6 @@
 import pandas as pd
-import seaborn as sns
-
 from matplotlib import pyplot as plt
-
-
-def bar_chart(dataframe: pd.DataFrame, title: str, x_label: str, y_label: str) -> None:
-    dataframe.plot.bar(rot=0)
-    plt.xlabel(x_label)
-    plt.ylabel(y_label)
-    plt.title(title)
-    plt.show()
+import seaborn as sns
 
 
 def line_chart(dataframe: pd.DataFrame, title: str, x_label: str, y_label: str) -> None:
