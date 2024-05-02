@@ -10,11 +10,11 @@ class DatasourceType(Enum):
     STOP_AND_SEARCH_CAMBRIDGESHIRE = ("Cambridgeshire - Stop and Search", f"{DATA_FOLDER}/stop-and-search/cambridgeshire/")
     UK_ACCIDENTS = ("United Kingdom - Accidents ", f"{DATA_FOLDER}/uk-accidents/")
 
-    def __new__(cls, name, path):
-        datasource = object.__new__(cls)
-        datasource._name = name
-        datasource._path = path
-        return datasource
+    def __new__(cls, name: str, path: str) -> Enum:
+        datasource_type = object.__new__(cls)
+        datasource_type._name = name
+        datasource_type._path = path
+        return datasource_type
 
     @property
     def name(self) -> str:
