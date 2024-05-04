@@ -19,6 +19,14 @@ class ChartFactory:
             return ChartFactory._create_bar_chart(chart_type, dataframe, columns)
         elif chart_type.is_heat_map():
             return ChartFactory._create_bar_chart(chart_type, dataframe, columns)
+        elif chart_type.is_box_plot():
+            return ChartFactory._create_bar_chart(chart_type, dataframe, columns)
+        elif chart_type.is_violin_plot():
+            return ChartFactory._create_bar_chart(chart_type, dataframe, columns)
+        elif chart_type.is_probability_density_function():
+            return ChartFactory._create_bar_chart(chart_type, dataframe, columns)
+        elif chart_type.is_pair_plot():
+            return ChartFactory._create_bar_chart(chart_type, dataframe, columns)
         else:
             raise ValueError('Invalid chart type')
 

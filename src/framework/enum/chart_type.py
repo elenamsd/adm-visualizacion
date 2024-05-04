@@ -2,11 +2,15 @@ from enum import Enum
 from typing import List, Type
 
 from src.framework.chart.bar_chart import BarChart
+from src.framework.chart.box_plot import BoxPlot
 from src.framework.chart.chart import Chart
 from src.framework.chart.heat_map import HeatMap
 from src.framework.chart.histogram import Histogram
 from src.framework.chart.line_chart import LineChart
+from src.framework.chart.pair_plot import PairPlot
+from src.framework.chart.probability_density_function import ProbabilityDensityFunction
 from src.framework.chart.scatter_plot import ScatterPlot
+from src.framework.chart.violin_plot import ViolinPlot
 
 
 class ChartType(Enum):
@@ -15,7 +19,11 @@ class ChartType(Enum):
     LINE_CHART = ("Line chart", LineChart, "Line chart by ")
     HISTOGRAM = ("Histogram", Histogram, "Histogram by ")
     SCATTER_PLOT = ("Scatter plot", ScatterPlot, "Scatter plot by ")
-    HEAT_MAP = ("Heat map", HeatMap, "Scatter plot by ")
+    HEAT_MAP = ("Heat map", HeatMap, "Heat map by ")
+    BOX_PLOT = ("Box plot", BoxPlot, "Box plot by ")
+    VIOLIN_PLOT = ("Violin plot", ViolinPlot, "Violin plot by ")
+    PROBABILITY_DENSITY_FUNCTION = ("Probability density function", ProbabilityDensityFunction, "Probability density function by ")
+    PAIR_PLOT = ("Pair plot", PairPlot, "Pair plot by ")
 
     def __new__(cls, name: str, classname: Type[Chart], title: str) -> Enum:
         chart_type = object.__new__(cls)
@@ -54,3 +62,15 @@ class ChartType(Enum):
 
     def is_heat_map(self) -> bool:
         return self == ChartType.HEAT_MAP
+
+    def is_box_plot(self) -> bool:
+        return self == ChartType.BOX_PLOT
+
+    def is_violin_plot(self) -> bool:
+        return self == ChartType.VIOLIN_PLOT
+
+    def is_probability_density_function(self) -> bool:
+        return self == ChartType.PROBABILITY_DENSITY_FUNCTION
+
+    def is_pair_plot(self) -> bool:
+        return self == ChartType.PAIR_PLOT
