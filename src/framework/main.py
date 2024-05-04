@@ -1,13 +1,11 @@
+from typing import List
+
 import pandas as pd
 
 from src.framework.enum.chart_type import ChartType
 from src.framework.enum.datasource_type import DatasourceType
 from src.framework.factory.chart_factory import ChartFactory
 from src.framework.factory.dataframe_factory import DataframeFactory
-
-
-def count_entries_by_gender(dataframe: pd.DataFrame, gender_label: str) -> pd.DataFrame:
-    return dataframe[gender_label].value_counts()
 
 
 def count_entries_by_year(dataframe: pd.DataFrame) -> pd.DataFrame:
@@ -37,8 +35,11 @@ def datasource_selector() -> pd.DataFrame:
             print(f"Ha seleccionado: {datasource_type.name}\n")
             return DataframeFactory.create_dataframe(datasource_type)
 
-        except (ValueError, IndexError):
+        except IndexError:
             print('Opción no válida\n')
+            return datasource_selector()
+        except ValueError as error:
+            print(f"Excepción: {error}\n")
             return datasource_selector()
 
 
@@ -55,16 +56,41 @@ def chart_selector(dataframe: pd.DataFrame) -> None:
         try:
             chart_type: ChartType = ChartType.list()[int(option) - 1]
             print(f"Ha seleccionado: {chart_type.name}")
-            ChartFactory.create_chart(chart_type, dataframe)
+            columns: List[str] = columns_selector(dataframe)
+            ChartFactory.create_chart(chart_type, dataframe, columns)
             chart_selector(dataframe)
 
-        except (ValueError, IndexError):
-            print('\nOpción no válida')
-            chart_selector(dataframe)
-
+        except IndexError:
+            print('Opción no válida')
+            return chart_selector(dataframe)
+        except ValueError as error:
+            print(f"Excepción: {error}")
+            return chart_selector(dataframe)
 
     print('Saliendo...')
     exit()
+
+
+def columns_selector(dataframe: pd.DataFrame) -> List[str]:
+    print('\nSeleccione las columnas que desea visualizar:')
+    for index, column in enumerate(dataframe.columns):
+        print(f'{index + 1}. {column}')
+
+    print('Por favor, seleccione una columna (separadas por comas): ', end='')
+    option: str = input()
+    columns: List[str] = []
+    try:
+        for column in option.split(','):
+            columns.append(dataframe.columns[int(column) - 1])
+        print(f"Las columnas seleccionadas son: {columns}")
+        return columns
+
+    except IndexError:
+        print('Opción no válida')
+        return columns_selector(dataframe)
+    except ValueError as error:
+        print(f"Excepción: {error}")
+        return columns_selector(dataframe)
 
 
 if __name__ == '__main__':
@@ -77,10 +103,3 @@ if __name__ == '__main__':
     print(dataframe.info())
 
     chart_selector(dataframe)
-
-    # bar_chart(count_entries_by_gender(dataframe, 'Gender'), 'Bar chart of Stops by gender', 'Gender', 'Frecuency')
-    # line_chart(count_entries_by_year(dataframe), 'Line chart of Stops by year', 'Year', 'Frecuency')
-    # histogram(dataframe['Age range'], 'Histogram of Stops by age range', 'Age range', 'Frecuency')
-    # scatter_plot(dataframe, 'ScatterPlot of Stops by gender, age range and object of search')
-
-    # dataframe.to_csv(GUARD_FOLDER + '/output.csv')

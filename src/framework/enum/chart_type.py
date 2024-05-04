@@ -3,15 +3,19 @@ from typing import List, Type
 
 from src.framework.chart.bar_chart import BarChart
 from src.framework.chart.chart import Chart
+from src.framework.chart.heat_map import HeatMap
+from src.framework.chart.histogram import Histogram
 from src.framework.chart.line_chart import LineChart
+from src.framework.chart.scatter_plot import ScatterPlot
 
 
 class ChartType(Enum):
 
     BAR_CHART = ("Bar chart", BarChart, "Bar chart by ")
     LINE_CHART = ("Line chart", LineChart, "Line chart by ")
-    HISTOGRAM = ("Histogram", BarChart, "Histogram by ")
-    SCATTER_PLOT = ("Scatter plot", BarChart, "Scatter plot by ")
+    HISTOGRAM = ("Histogram", Histogram, "Histogram by ")
+    SCATTER_PLOT = ("Scatter plot", ScatterPlot, "Scatter plot by ")
+    HEAT_MAP = ("Heat map", HeatMap, "Scatter plot by ")
 
     def __new__(cls, name: str, classname: Type[Chart], title: str) -> Enum:
         chart_type = object.__new__(cls)
@@ -47,3 +51,6 @@ class ChartType(Enum):
 
     def is_scatter_plot(self) -> bool:
         return self == ChartType.SCATTER_PLOT
+
+    def is_heat_map(self) -> bool:
+        return self == ChartType.HEAT_MAP
