@@ -16,5 +16,5 @@ class ScatterPlot(Chart):
         # dataframe = self.dataframe.groupby([self.columns[0], self.columns[1]]).size().reset_index(name='Frequency')
         # plt.figure(figsize=(10, 8))
         sns.scatterplot(data=self.dataframe, x=self.columns[0], y=self.columns[1])
-        plt.title(self.title)
+        plt.title(f"{self.title} {self.columns[0]} and {self.columns[1]}")
         plt.show()

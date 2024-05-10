@@ -12,8 +12,8 @@ class BoxPlot(Chart):
     def __init__(self, dataframe: pd.DataFrame, title: str, columns: List[str]) -> None:
         super().__init__(dataframe, title, columns)
 
-
     def plot(self) -> None:
+        plt.figure(figsize=(10, 6))
         sns.boxplot(x=self.columns[0], y=self.columns[1], data=self.dataframe)
-        plt.title(self.title)
+        plt.title(f"{self.title} {self.columns[0]} and {self.columns[1]}")
         plt.show()

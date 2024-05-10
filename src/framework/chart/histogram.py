@@ -13,7 +13,7 @@ class Histogram(Chart):
 
     def plot(self) -> None:
         plt.hist(self.dataframe[self.columns[0]])
-        plt.title(self.title)
-        plt.xlabel('Frecuencia')
-        plt.ylabel(self.columns[0])
+        plt.title(f"{self.title} {self.columns[0]}")
+        plt.xlabel(self.columns[0])
+        plt.ylabel('Frecuencia')
         plt.show()

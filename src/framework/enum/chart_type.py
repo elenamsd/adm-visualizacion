@@ -15,15 +15,15 @@ from src.framework.chart.violin_plot import ViolinPlot
 
 class ChartType(Enum):
 
-    BAR_CHART = ("Bar chart", BarChart, "Bar chart by ")
-    LINE_CHART = ("Line chart", LineChart, "Line chart by ")
-    HISTOGRAM = ("Histogram", Histogram, "Histogram by ")
-    SCATTER_PLOT = ("Scatter plot", ScatterPlot, "Scatter plot by ")
-    HEAT_MAP = ("Heat map", HeatMap, "Heat map by ")
-    BOX_PLOT = ("Box plot", BoxPlot, "Box plot by ")
-    VIOLIN_PLOT = ("Violin plot", ViolinPlot, "Violin plot by ")
-    PROBABILITY_DENSITY_FUNCTION = ("Probability density function", ProbabilityDensityFunction, "Probability density function by ")
-    PAIR_PLOT = ("Pair plot", PairPlot, "Pair plot by ")
+    BAR_CHART = ("Bar chart", BarChart, "Bar chart by")
+    LINE_CHART = ("Line chart", LineChart, "Line chart by")
+    HISTOGRAM = ("Histogram", Histogram, "Histogram by")
+    SCATTER_PLOT = ("Scatter plot", ScatterPlot, "Scatter plot by")
+    HEAT_MAP = ("Heat map", HeatMap, "Heat map by")
+    BOX_PLOT = ("Box plot", BoxPlot, "Box plot by")
+    VIOLIN_PLOT = ("Violin plot", ViolinPlot, "Violin plot by")
+    PROBABILITY_DENSITY_FUNCTION = ("Probability density function", ProbabilityDensityFunction, "Probability density function by")
+    PAIR_PLOT = ("Pair plot", PairPlot, "Pair plot by")
 
     def __new__(cls, name: str, classname: Type[Chart], title: str) -> Enum:
         chart_type = object.__new__(cls)

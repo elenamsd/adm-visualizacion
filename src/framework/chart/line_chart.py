@@ -15,7 +15,7 @@ class LineChart(Chart):
         column_frequency: pd.DataFrame = self.dataframe[self.columns[0]].value_counts().sort_index()
 
         plt.plot(column_frequency.index, column_frequency.values)
-        plt.xlabel("Frequency")
-        plt.ylabel(self.columns[0])
-        plt.title(self.title)
+        plt.xlabel(self.columns[0])
+        plt.ylabel("Frequency")
+        plt.title(f"{self.title} {self.columns[0]}")
         plt.show()
