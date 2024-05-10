@@ -13,11 +13,12 @@ class BarChart(Chart):
         super().__init__(dataframe, title, columns)
 
     def plot(self) -> None:
-        if len(self.columns) != 1:
+        if len(self.columns) > 1:
             self._multigroup_plot()
         else:
             column_frequency: pd.DataFrame = self.dataframe[self.columns[0]].value_counts()
             column_frequency.plot.bar(rot=0)
+
             plt.xlabel(self.columns[0])
             plt.ylabel("Frequency")
             plt.title(f"{self.title} {self.columns[0]}")
@@ -25,8 +26,8 @@ class BarChart(Chart):
 
     def _multigroup_plot(self) -> None:
         grouped_dataframe = self.dataframe.groupby(self.columns[0])[self.columns[1]].value_counts()
-        unique_x_values = self.dataframe[self.columns[0]].unique()
-        unique_colors = self.dataframe[self.columns[1]].unique()
+        unique_x_values = sorted(self.dataframe[self.columns[0]].unique())
+        unique_colors = sorted(self.dataframe[self.columns[1]].unique())
 
         bar_positions = np.arange(len(unique_colors))
         bar_width = 0.25
