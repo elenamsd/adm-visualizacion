@@ -1,4 +1,4 @@
-from abc import abstractmethod
+import os
 from typing import List
 
 import pandas as pd
@@ -8,9 +8,13 @@ from src.framework.strategy.reader.reader_strategy import ReaderStrategy
 
 class CsvReader(ReaderStrategy):
 
-    @abstractmethod
     def get_files(self, path: str) -> List[str]:
-        pass
+        dataset: List[str] = []
+        for file in os.listdir(path):
+            if file.endswith('.csv') and not file.startswith('output'):
+                dataset.append(os.path.join(path, file))
+
+        return dataset
 
     def get_dataframe(self, files: List[str]) -> pd.DataFrame:
         dfs: List[pd.DataFrame] = []
