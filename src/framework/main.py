@@ -4,7 +4,6 @@ import pandas as pd
 
 from src.framework.enum.chart_type import ChartType
 from src.framework.enum.datasource_type import DatasourceType
-from src.framework.factory.chart_factory import ChartFactory
 from src.framework.factory.dataframe_factory import DataframeFactory
 
 
@@ -56,16 +55,19 @@ def chart_selector(dataframe: pd.DataFrame) -> None:
         try:
             chart_type: ChartType = ChartType.list()[int(option) - 1]
             print(f"Ha seleccionado: {chart_type.name}")
+
             columns: List[str] = columns_selector(dataframe)
-            ChartFactory.create_chart(chart_type, dataframe, columns)
+            chart = chart_type.classname(dataframe, chart_type.title, columns)
+            chart.plot()
+
             chart_selector(dataframe)
 
         except IndexError:
             print('Opción no válida')
-            return chart_selector(dataframe)
+            chart_selector(dataframe)
         except ValueError as error:
             print(f"Excepción: {error}")
-            return chart_selector(dataframe)
+            chart_selector(dataframe)
 
     print('Saliendo...')
     exit()
