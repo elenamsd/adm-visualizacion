@@ -24,14 +24,14 @@ class LineChart(Chart):
             plt.show()
 
     def _multigroup_plot(self) -> None:
-        grouped_dataframe = self.dataframe.groupby(self.columns[0])[self.columns[1]].value_counts()
-        unique_x_values = sorted(self.dataframe[self.columns[0]].unique())
-        unique_colors = sorted(self.dataframe[self.columns[1]].unique())
+        grouped_dataframe: pd.DataFrame = self.dataframe.groupby(self.columns[0])[self.columns[1]].value_counts()
+        unique_x_values: List[str] = sorted(self.dataframe[self.columns[0]].unique())
+        unique_colors: List[str] = sorted(self.dataframe[self.columns[1]].unique())
 
         figure, axis = plt.subplots(figsize=(10, 6))
 
         for index, x_value in enumerate(unique_x_values):
-            color_frequencies = [grouped_dataframe.loc[x_value].get(color, 0) for color in unique_colors]
+            color_frequencies: List[int] = [grouped_dataframe.loc[x_value].get(color, 0) for color in unique_colors]
             axis.plot(unique_colors, color_frequencies, label=x_value)
 
         axis.set_xlabel(self.columns[1])
