@@ -7,6 +7,7 @@ from src.framework.chart.chart import Chart
 from src.framework.chart.heat_map import HeatMap
 from src.framework.chart.histogram import Histogram
 from src.framework.chart.line_chart import LineChart
+from src.framework.chart.map_chart import MapChart
 from src.framework.chart.pair_plot import PairPlot
 from src.framework.chart.probability_density_function import ProbabilityDensityFunction
 from src.framework.chart.scatter_plot import ScatterPlot
@@ -24,6 +25,7 @@ class ChartType(Enum):
     VIOLIN_PLOT = ("Violin plot", ViolinPlot, "Violin plot by")
     PROBABILITY_DENSITY_FUNCTION = ("Probability density function", ProbabilityDensityFunction, "Probability density function by")
     PAIR_PLOT = ("Pair plot", PairPlot, "Pair plot by")
+    MAP_CHART = ("Map chart", MapChart, "Map chart by")
 
     def __new__(cls, name: str, classname: Type[Chart], title: str) -> Enum:
         chart_type = object.__new__(cls)
@@ -74,3 +76,6 @@ class ChartType(Enum):
 
     def is_pair_plot(self) -> bool:
         return self == ChartType.PAIR_PLOT
+
+    def is_map_chart(self) -> bool:
+        return self == ChartType.MAP_CHART

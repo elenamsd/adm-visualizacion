@@ -26,15 +26,7 @@ class ScatterPlot(Chart):
     def _multigroup_plot(self) -> None:
         figure, axis = plt.subplots(figsize=(10, 6))
 
-        unique_x_values: List[str] = sorted(self.dataframe[self.columns[0]].unique())
-        unique_colors: List[str] = sorted(self.dataframe[self.columns[1]].unique())
-
-        for x_value in unique_x_values:
-            grouped_data: pd.DataFrame = self.dataframe[self.dataframe[self.columns[0]] == x_value]
-            for color in unique_colors:
-                color_data: pd.DataFrame = grouped_data[grouped_data[self.columns[1]] == color]
-                axis.scatter(color_data[self.columns[0]], color_data[self.columns[1]],
-                             label=f"{self.columns[1]}: {color}")
+        sns.scatterplot(data=self.dataframe, x=self.columns[0], y=self.columns[1], hue=self.columns[2])
 
         axis.set_xlabel(self.columns[0])
         axis.set_ylabel(self.columns[1])
