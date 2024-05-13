@@ -10,6 +10,7 @@ from src.framework.chart.line_chart import LineChart
 from src.framework.chart.model.classification_sla import ClassificationSLA
 from src.framework.chart.model.clustering_ula import ClusteringULA
 from src.framework.chart.model.regression_a import RegressionA
+from src.framework.chart.map_chart import MapChart
 from src.framework.chart.pair_plot import PairPlot
 from src.framework.chart.probability_density_function import ProbabilityDensityFunction
 from src.framework.chart.scatter_plot import ScatterPlot
@@ -27,6 +28,7 @@ class ChartType(Enum):
     VIOLIN_PLOT = ("Violin plot", ViolinPlot, "Violin plot by")
     PROBABILITY_DENSITY_FUNCTION = ("Probability density function", ProbabilityDensityFunction, "Probability density function by")
     PAIR_PLOT = ("Pair plot", PairPlot, "Pair plot by")
+    MAP_CHART = ("Map chart", MapChart, "Map chart by")
 
     CLASSIFICATION_SLA = ("Classification Supervised Learning Algorithm", ClassificationSLA, "Classification by")
     REGRESSION_A = ("Regression Algorithm", RegressionA, "Regression by")
@@ -81,6 +83,9 @@ class ChartType(Enum):
 
     def is_pair_plot(self) -> bool:
         return self == ChartType.PAIR_PLOT
+
+    def is_map_chart(self) -> bool:
+        return self == ChartType.MAP_CHART
 
     def is_classification_sla(self) -> bool:
         return self == ChartType.CLASSIFICATION_SLA

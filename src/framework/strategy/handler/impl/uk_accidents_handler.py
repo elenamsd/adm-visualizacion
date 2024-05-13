@@ -13,4 +13,6 @@ class UKAccidentsHandler(HandlerStrategy):
         dataframe['Junction_Control'].fillna('Uncontrolled', inplace=True)
         dataframe = dataframe.dropna()
 
+        dataframe['Date'] = pd.to_datetime(dataframe['Date'], format='%d/%m/%Y')
+
         return dataframe
