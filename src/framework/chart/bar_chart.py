@@ -30,7 +30,7 @@ class BarChart(Chart):
         unique_colors: List[str] = sorted(self.dataframe[self.columns[1]].unique())
 
         bar_positions: np.ndarray = np.arange(len(unique_colors))
-        bar_width: float = 0.25
+        bar_width: float = 0.15
 
         figure, axis = plt.subplots(figsize=(10, 6))
 
