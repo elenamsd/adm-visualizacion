@@ -7,6 +7,9 @@ from src.framework.chart.chart import Chart
 from src.framework.chart.heat_map import HeatMap
 from src.framework.chart.histogram import Histogram
 from src.framework.chart.line_chart import LineChart
+from src.framework.chart.model.classification_sla import ClassificationSLA
+from src.framework.chart.model.clustering_ula import ClusteringULA
+from src.framework.chart.model.regression_a import RegressionA
 from src.framework.chart.pair_plot import PairPlot
 from src.framework.chart.probability_density_function import ProbabilityDensityFunction
 from src.framework.chart.scatter_plot import ScatterPlot
@@ -24,6 +27,10 @@ class ChartType(Enum):
     VIOLIN_PLOT = ("Violin plot", ViolinPlot, "Violin plot by")
     PROBABILITY_DENSITY_FUNCTION = ("Probability density function", ProbabilityDensityFunction, "Probability density function by")
     PAIR_PLOT = ("Pair plot", PairPlot, "Pair plot by")
+
+    CLASSIFICATION_SLA = ("Classification Supervised Learning Algorithm", ClassificationSLA, "Classification by")
+    REGRESSION_A = ("Regression Algorithm", RegressionA, "Regression by")
+    CLUSTERING_ULA = ("Clustering Unsupervised Learning Algorithm", ClusteringULA, "Clustering by")
 
     def __new__(cls, name: str, classname: Type[Chart], title: str) -> Enum:
         chart_type = object.__new__(cls)
@@ -74,3 +81,12 @@ class ChartType(Enum):
 
     def is_pair_plot(self) -> bool:
         return self == ChartType.PAIR_PLOT
+
+    def is_classification_sla(self) -> bool:
+        return self == ChartType.CLASSIFICATION_SLA
+
+    def is_regression(self) -> bool:
+        return self == ChartType.REGRESSION_A
+
+    def is_clustering(self) -> bool:
+        return self == ChartType.CLUSTERING_ULA
