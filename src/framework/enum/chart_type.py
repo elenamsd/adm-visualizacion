@@ -7,9 +7,9 @@ from src.framework.chart.chart import Chart
 from src.framework.chart.heat_map import HeatMap
 from src.framework.chart.histogram import Histogram
 from src.framework.chart.line_chart import LineChart
-from src.framework.chart.model.classification_sla import ClassificationSLA
-from src.framework.chart.model.clustering_ula import ClusteringULA
-from src.framework.chart.model.regression_a import RegressionA
+from src.framework.chart.model.decision_tree_classifier_model import DecisionTreeClassifierModel
+from src.framework.chart.model.kmeans_clustering_model import KMeansClusteringModel
+from src.framework.chart.model.linear_regression_model import LinearRegressionModel
 from src.framework.chart.map_chart import MapChart
 from src.framework.chart.pair_plot import PairPlot
 from src.framework.chart.probability_density_function import ProbabilityDensityFunction
@@ -30,9 +30,9 @@ class ChartType(Enum):
     PAIR_PLOT = ("Pair plot", PairPlot, "Pair plot by")
     MAP_CHART = ("Map chart", MapChart, "Map chart by")
 
-    CLASSIFICATION_SLA = ("Classification Supervised Learning Algorithm", ClassificationSLA, "Classification by")
-    REGRESSION_A = ("Regression Algorithm", RegressionA, "Regression by")
-    CLUSTERING_ULA = ("Clustering Unsupervised Learning Algorithm", ClusteringULA, "Clustering by")
+    DECISION_TREE_CLASSIFIER = ("Decision Tree Classifier", DecisionTreeClassifierModel, "Classification by")
+    LINEAR_REGRESION = ("Linear Regression", LinearRegressionModel, "Regression by")
+    KMEANS_CLUSTERING = ("KMeans Clustering", KMeansClusteringModel, "Clustering by")
 
     def __new__(cls, name: str, classname: Type[Chart], title: str) -> Enum:
         chart_type = object.__new__(cls)
@@ -87,11 +87,11 @@ class ChartType(Enum):
     def is_map_chart(self) -> bool:
         return self == ChartType.MAP_CHART
 
-    def is_classification_sla(self) -> bool:
-        return self == ChartType.CLASSIFICATION_SLA
+    def is_decision_tree_classifier(self) -> bool:
+        return self == ChartType.DECISION_TREE_CLASSIFIER
 
-    def is_regression(self) -> bool:
-        return self == ChartType.REGRESSION_A
+    def is_linear_regression(self) -> bool:
+        return self == ChartType.LINEAR_REGRESION
 
-    def is_clustering(self) -> bool:
-        return self == ChartType.CLUSTERING_ULA
+    def is_kmeans_clustering(self) -> bool:
+        return self == ChartType.KMEANS_CLUSTERING
