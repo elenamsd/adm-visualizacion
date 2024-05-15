@@ -3,12 +3,12 @@ from typing import List
 import pandas as pd
 
 from src.framework.enum.datasource_type import DatasourceType
-from src.framework.strategy.handler.handler_context import HandlerContext
-from src.framework.strategy.handler.impl.stop_and_search_handler import StopAndSearchHandler
-from src.framework.strategy.handler.impl.uk_accidents_handler import UKAccidentsHandler
-from src.framework.strategy.reader.impl.csv_reader import CsvReader
-from src.framework.strategy.reader.impl.stop_and_search_csv_reader import StopAndSearchCsvReader
-from src.framework.strategy.reader.reader_context import ReaderContext
+from src.framework.handler.handler_context import HandlerContext
+from src.framework.handler.impl.stop_and_search_handler import StopAndSearchHandler
+from src.framework.handler.impl.uk_accidents_handler import UKAccidentsHandler
+from src.framework.reader.impl.csv_reader import CsvReader
+from src.framework.reader.impl.stop_and_search_csv_reader import StopAndSearchCsvReader
+from src.framework.reader.reader_context import ReaderContext
 
 
 class DataframeFactory:
