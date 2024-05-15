@@ -2,7 +2,7 @@ from typing import List
 
 import pandas as pd
 
-from src.framework.strategy.reader.reader_strategy import ReaderStrategy
+from src.framework.reader.reader_strategy import ReaderStrategy
 
 
 class ReaderContext:

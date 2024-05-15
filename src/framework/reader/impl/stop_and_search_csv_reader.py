@@ -2,7 +2,7 @@ import os
 
 from typing import List
 
-from src.framework.strategy.reader.impl.csv_reader import CsvReader
+from src.framework.reader.impl.csv_reader import CsvReader
 
 
 class StopAndSearchCsvReader(CsvReader):

@@ -1,6 +1,6 @@
 import pandas as pd
 
-from src.framework.strategy.handler.handler_strategy import HandlerStrategy
+from src.framework.handler.handler_strategy import HandlerStrategy
 
 
 class HandlerContext:
