@@ -17,8 +17,12 @@ class LinearRegressionModel(Model):
         super().__init__(dataframe, title, columns)
 
     def algorithm(self):
-        X = self.dataframe.select_dtypes(include=['number']).drop(self.columns[0], axis=1)
-        y = self.dataframe[self.columns[0]]
+        number_dataframe: pd.DataFrame = self.dataframe.select_dtypes(include=['number'])
+        if not self.columns[0] in number_dataframe:
+            raise ValueError('No está la columna en el Dataframe')
+
+        X = number_dataframe.drop(self.columns[0], axis=1)
+        y = number_dataframe[self.columns[0]]
 
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 

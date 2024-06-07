@@ -16,8 +16,12 @@ class DecisionTreeClassifierModel(Model):
         super().__init__(dataframe, title, columns)
 
     def algorithm(self):
-        X = self.dataframe.select_dtypes(include=['number']).drop(self.columns[0], axis=1)
-        y = self.dataframe[self.columns[0]]
+        number_dataframe: pd.DataFrame = self.dataframe.select_dtypes(include=['number'])
+        if not self.columns[0] in number_dataframe:
+            raise ValueError('No está la columna en el Dataframe')
+
+        X = number_dataframe.drop(self.columns[0], axis=1)
+        y = number_dataframe[self.columns[0]]
 
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
@@ -36,5 +40,5 @@ class DecisionTreeClassifierModel(Model):
         y_test, y_pred = self.algorithm()
         plt.figure(figsize=(8, 6))
         sns.heatmap(pd.crosstab(y_test, y_pred, rownames=['Actual'], colnames=['Predicted']), annot=True, fmt='d')
-        plt.title(f"Confusion Matrix - {self.title}")
+        plt.title(f"Confusion Matrix - {self.title} {self.columns[0]}")
         plt.show()
